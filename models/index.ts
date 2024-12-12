@@ -7,14 +7,9 @@ import { createPushTokenTable } from "./push_tokens";
 import { createWithdrawalRequest } from "./withdrawal_request";
 
 dotenv.config();
-const DBUSER = process.env.DBUSER;
-const DBPASSWORD = process.env.DBPASSWORD;
-const DBNAME = process.env.DBNAME;
-const DBHOST = process.env.DBHOST;
+const DBURL = process.env.DATABASE_URL
 
-const DB_PATH = `postgresql://postgres:LqXkiXsykvdrEgzMRKCyRMmmVzZaBUCX@junction.proxy.rlwy.net:47331/railway`;
-// const DB_PATH = `postgresql://${DBUSER}:${DBPASSWORD}@${DBHOST}/${DBNAME}?ssl=true`;
-const sequelize = new Sequelize(DB_PATH);
+const sequelize = new Sequelize(DBURL as string);
 
 // Create database tables
 export const User = createUserTable(sequelize);
